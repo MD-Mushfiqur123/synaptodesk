@@ -385,7 +385,7 @@ Use `bash scripts/start.sh` for the whole stack and `bash scripts/stop.sh` to ta
 
 ## Documentation
 
-- [copilotkit.ai/synaptodesk](https://copilotkit.ai/synaptodesk)
+- [GitHub Repository](https://github.com/MD-Mushfiqur123/synaptodesk)
 - [docs/README.md](docs/README.md)
 - [docs/architecture.md](docs/architecture.md)
 - [docs/configuration.md](docs/configuration.md)
@@ -403,4 +403,4 @@ Use `bash scripts/start.sh` for the whole stack and `bash scripts/stop.sh` to ta
 
 ## License
 
-[MIT](./LICENSE) © CopilotKit
+[MIT](./LICENSE) © 2026 Md Mushfiqur Rahim & Contributors
