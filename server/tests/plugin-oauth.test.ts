@@ -473,7 +473,9 @@ describe("registering this deployment as an OAuth client", () => {
       expect(client).toEqual({ clientId: "dyn-123", clientSecret: "" });
       expect(seen[0]?.url).toBe("https://vendor.example/register");
       expect(seen[0]?.body).toEqual({
-        redirect_uris: ["https://synaptodesk.example/api/plugins/oauth/callback"],
+        redirect_uris: [
+          "https://synaptodesk.example/api/plugins/oauth/callback",
+        ],
         grant_types: ["authorization_code", "refresh_token"],
         response_types: ["code"],
         token_endpoint_auth_method: "none",

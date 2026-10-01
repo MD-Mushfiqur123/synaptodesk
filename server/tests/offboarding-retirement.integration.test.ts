@@ -56,11 +56,14 @@ function appFor(retire: () => Promise<{ retired: number }>) {
   return {
     events,
     remove: () =>
-      app.request(`http://synaptodesk.test/api/admin/people/${memberId}/access`, {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ revoked: true }),
-      }),
+      app.request(
+        `http://synaptodesk.test/api/admin/people/${memberId}/access`,
+        {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ revoked: true }),
+        },
+      ),
   };
 }
 

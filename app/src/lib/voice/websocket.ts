@@ -121,7 +121,10 @@ export const connectWebSocket: ConnectVoice = async ({
       method: "POST",
       credentials: "include",
       signal,
-      headers: { "Content-Type": "application/json", "x-synaptodesk-voice": "1" },
+      headers: {
+        "Content-Type": "application/json",
+        "x-synaptodesk-voice": "1",
+      },
       body: JSON.stringify({ channelId }),
     });
     const body: unknown = await response.json();

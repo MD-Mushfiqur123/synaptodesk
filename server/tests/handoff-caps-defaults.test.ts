@@ -26,7 +26,9 @@ import { testEnvironment } from "./support/environment";
 const repositoryRoot = resolve(import.meta.dir, "..", "..");
 
 const chart = parse(
-  await Bun.file(resolve(repositoryRoot, "charts/synaptodesk/values.yaml")).text(),
+  await Bun.file(
+    resolve(repositoryRoot, "charts/synaptodesk/values.yaml"),
+  ).text(),
 ) as {
   config?: { handoff?: { maxDepth?: number; maxPerRun?: number } };
 };

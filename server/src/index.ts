@@ -20,8 +20,6 @@ import { createAgentProfileStore } from "./agents/profile-store";
 import type { AgentActor } from "./agents/profile-types";
 import { createRuntimeAgentLoader } from "./agents/runtime-agents";
 import { createApp } from "./app";
-import { clearLearningRevisionFallback } from "./learning/runtime";
-import { createLearningSettingsStore } from "./learning/settings";
 import {
   type AuditInitiator,
   createAuditReader,
@@ -57,8 +55,6 @@ import {
 } from "./channels/summary";
 import { createThreadIdentity } from "./channels/thread-identity";
 import { createChannelTitler } from "./channels/titler";
-import { createVoiceSessionStore } from "./voice/sessions";
-import { createVoiceSummarizer } from "./voice/summary";
 import { createSandboxedStore } from "./components/sandboxed";
 import { createComponentStore } from "./components/store";
 import { createComputerGateway } from "./computer/gateway";
@@ -93,9 +89,10 @@ import { intelligenceChannelMappings } from "./db/schema";
 import { createHostAccessBroker } from "./host-access/broker";
 import { hostAccessTools } from "./host-access/tools";
 import { observeIntelligenceAuthentication } from "./intelligence-client";
+import { clearLearningRevisionFallback } from "./learning/runtime";
+import { createLearningSettingsStore } from "./learning/settings";
 import { createOnboardingStore } from "./people/onboarding";
 import { createPeopleStore } from "./people/store";
-import { createProviderOAuthProxy } from "./provider-oauth";
 import { useRoutineTools } from "./plugins/builtin-routines";
 import { useComposioClient } from "./plugins/composio";
 import { createComposioClient } from "./plugins/composio-adapter";
@@ -103,6 +100,7 @@ import { backfillComposioLogos } from "./plugins/logos";
 import { redirectUriFor } from "./plugins/oauth";
 import { createPluginStore } from "./plugins/store";
 import { grantedSkills, grantedTools, REFUSAL_MARKER } from "./plugins/tools";
+import { createProviderOAuthProxy } from "./provider-oauth";
 import { createTurnRunner } from "./routines/run-turn";
 import { createRoutineRunner } from "./routines/runner";
 import { createRoutineStore } from "./routines/store";
@@ -115,6 +113,8 @@ import {
 } from "./tenant-package";
 import { createUserInstructionsStore } from "./user-instructions";
 import { createUserPreferencesStore } from "./user-preferences";
+import { createVoiceSessionStore } from "./voice/sessions";
+import { createVoiceSummarizer } from "./voice/summary";
 import { repeatAfterEach } from "./work/loop";
 import {
   createWorkQueue,

@@ -9,8 +9,10 @@ describe("TEST_DATABASE_URL", () => {
   test("refuses the live development database even when DATABASE_URL names it", () => {
     expect(() =>
       testDatabaseUrlFrom({
-        TEST_DATABASE_URL: "postgres://synaptodesk:synaptodesk@localhost:5432/synaptodesk",
-        DATABASE_URL: "postgres://synaptodesk:synaptodesk@localhost:5432/synaptodesk_test",
+        TEST_DATABASE_URL:
+          "postgres://synaptodesk:synaptodesk@localhost:5432/synaptodesk",
+        DATABASE_URL:
+          "postgres://synaptodesk:synaptodesk@localhost:5432/synaptodesk_test",
       }),
     ).toThrow(/live synaptodesk database/);
   });
@@ -18,7 +20,8 @@ describe("TEST_DATABASE_URL", () => {
   test("does not read DATABASE_URL as a fallback", () => {
     expect(() =>
       testDatabaseUrlFrom({
-        DATABASE_URL: "postgres://synaptodesk:synaptodesk@localhost:5432/synaptodesk_test",
+        DATABASE_URL:
+          "postgres://synaptodesk:synaptodesk@localhost:5432/synaptodesk_test",
       }),
     ).toThrow(/TEST_DATABASE_URL/);
   });
@@ -29,6 +32,8 @@ describe("TEST_DATABASE_URL", () => {
         TEST_DATABASE_URL:
           "postgres://synaptodesk:synaptodesk@localhost:5432/synaptodesk_test",
       }),
-    ).toBe("postgres://synaptodesk:synaptodesk@localhost:5432/synaptodesk_test");
+    ).toBe(
+      "postgres://synaptodesk:synaptodesk@localhost:5432/synaptodesk_test",
+    );
   });
 });

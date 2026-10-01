@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test";
-import { join } from "node:path";
 import { createServer } from "node:net";
+import { join } from "node:path";
 import {
   localChromeConfiguration,
   requireAvailablePort,
@@ -26,8 +26,12 @@ describe("starting the local computer", () => {
       "darwin",
       "/Users/operator",
     );
-    expect(config.env.PROFILES_DIR).toBe("/tmp/synaptodesk-local-test/profiles");
-    expect(config.env.WORKSPACE_DIR).toBe("/tmp/synaptodesk-local-test/workspace");
+    expect(config.env.PROFILES_DIR).toBe(
+      "/tmp/synaptodesk-local-test/profiles",
+    );
+    expect(config.env.WORKSPACE_DIR).toBe(
+      "/tmp/synaptodesk-local-test/workspace",
+    );
     expect(config.env.COMPUTER_BROWSER_BACKEND).toBe("local-chrome");
     expect(config.env.COMPUTER_BROWSER_MODE).toBe("headed");
     expect(config.env.COMPUTER_SANDBOX).toBe("on");

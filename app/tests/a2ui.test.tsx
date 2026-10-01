@@ -10,7 +10,10 @@ import { GlobalRegistrator } from "@happy-dom/global-registrator";
 import { cleanup, render, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { useEffect } from "react";
-import { a2uiProviderOptions, SYNAPTODESK_A2UI_CATALOG } from "@/lib/copilot/a2ui";
+import {
+  a2uiProviderOptions,
+  SYNAPTODESK_A2UI_CATALOG,
+} from "@/lib/copilot/a2ui";
 
 beforeAll(() => GlobalRegistrator.register());
 afterEach(cleanup);
@@ -19,7 +22,10 @@ afterAll(() => GlobalRegistrator.unregister());
 const operations: ServerToClientMessage[] = [
   {
     version: "v0.9",
-    createSurface: { surfaceId: "trip", catalogId: SYNAPTODESK_A2UI_CATALOG.id },
+    createSurface: {
+      surfaceId: "trip",
+      catalogId: SYNAPTODESK_A2UI_CATALOG.id,
+    },
   },
   {
     version: "v0.9",
@@ -113,7 +119,9 @@ test("the public catalog renders a generated form and its action resolves the ed
 test("disabled and unresolved deployments do not activate or advertise the A2UI catalog", () => {
   expect(a2uiProviderOptions(false)).toEqual({});
   expect(a2uiProviderOptions(undefined)).toEqual({});
-  expect(a2uiProviderOptions(true).a2ui?.catalog).toBe(SYNAPTODESK_A2UI_CATALOG);
+  expect(a2uiProviderOptions(true).a2ui?.catalog).toBe(
+    SYNAPTODESK_A2UI_CATALOG,
+  );
   // Existing SynaptoDesk gallery components retain their separate per-Bot tool/grant path.
   expect(SYNAPTODESK_A2UI_CATALOG.components.has("showTable")).toBe(false);
   expect(SYNAPTODESK_A2UI_CATALOG.components.has("askForm")).toBe(false);

@@ -12,7 +12,9 @@ function envFileArgument(envPath: string): string {
 }
 
 async function runProductionEntry() {
-  const proofDir = await mkdtemp(`${tmpdir()}${sep}synaptodesk-loader-boundary-`);
+  const proofDir = await mkdtemp(
+    `${tmpdir()}${sep}synaptodesk-loader-boundary-`,
+  );
   const envPath = `${proofDir}${sep}synthetic.env`;
   await writeFile(
     envPath,

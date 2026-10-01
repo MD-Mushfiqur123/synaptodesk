@@ -23,7 +23,9 @@ describe("the database address", () => {
     process.env.DATABASE_URL =
       "postgres://synaptodesk:synaptodesk@127.0.0.1:5432/synaptodesk";
 
-    createDatabase("postgres://synaptodesk:synaptodesk@127.0.0.1:5432/synaptodesk");
+    createDatabase(
+      "postgres://synaptodesk:synaptodesk@127.0.0.1:5432/synaptodesk",
+    );
 
     expect(process.env.DATABASE_URL).toBeUndefined();
   });
@@ -42,7 +44,9 @@ describe("the database address", () => {
     const secret = "s3cr3t-p4ssw0rd";
     let message = "";
     try {
-      createDatabase(`postgres://synaptodesk:${secret}@127.0.0.1:notaport/synaptodesk`);
+      createDatabase(
+        `postgres://synaptodesk:${secret}@127.0.0.1:notaport/synaptodesk`,
+      );
     } catch (error) {
       message = error instanceof Error ? error.message : String(error);
     }
@@ -52,9 +56,9 @@ describe("the database address", () => {
 
   test("refuses a URL with no host, which would otherwise parse and connect nowhere", () => {
     // `new URL` accepts this: the scheme is "synaptodesk:" and there is no host at all.
-    expect(() => createDatabase("synaptodesk:synaptodesk@localhost/synaptodesk")).toThrow(
-      /names no host/,
-    );
+    expect(() =>
+      createDatabase("synaptodesk:synaptodesk@localhost/synaptodesk"),
+    ).toThrow(/names no host/);
   });
 
   test("refuses a URL that names no database, rather than connecting to a default", () => {
@@ -70,7 +74,9 @@ describe("the database address", () => {
      * and the range, the way every other malformed address does.
      */
     expect(() =>
-      createDatabase("postgres://synaptodesk:synaptodesk@127.0.0.1:0/synaptodesk"),
+      createDatabase(
+        "postgres://synaptodesk:synaptodesk@127.0.0.1:0/synaptodesk",
+      ),
     ).toThrow(/DATABASE_URL names a port that is not between 1 and 65535/);
   });
 
@@ -82,26 +88,34 @@ describe("the database address", () => {
      * find a literal `%`.
      */
     expect(() =>
-      createDatabase("postgres://synaptodesk:100%pure@127.0.0.1:5432/synaptodesk"),
+      createDatabase(
+        "postgres://synaptodesk:100%pure@127.0.0.1:5432/synaptodesk",
+      ),
     ).toThrow(/DATABASE_URL has a password that is not percent-encoded/);
   });
 
   test("refuses a username holding one too", () => {
     expect(() =>
-      createDatabase("postgres://open%bot:synaptodesk@127.0.0.1:5432/synaptodesk"),
+      createDatabase(
+        "postgres://open%bot:synaptodesk@127.0.0.1:5432/synaptodesk",
+      ),
     ).toThrow(/DATABASE_URL has a username that is not percent-encoded/);
   });
 
   test("refuses a database name holding one too", () => {
     expect(() =>
-      createDatabase("postgres://synaptodesk:synaptodesk@127.0.0.1:5432/open%bot"),
+      createDatabase(
+        "postgres://synaptodesk:synaptodesk@127.0.0.1:5432/open%bot",
+      ),
     ).toThrow(/DATABASE_URL has a database name that is not percent-encoded/);
   });
 
   test("still accepts a password that IS percent-encoded, decoding it", () => {
     // The escape a correctly written password uses: `%40` is `@`, which cannot be written raw.
     expect(() =>
-      createDatabase("postgres://synaptodesk:p%40ss@127.0.0.1:5432/synaptodesk"),
+      createDatabase(
+        "postgres://synaptodesk:p%40ss@127.0.0.1:5432/synaptodesk",
+      ),
     ).not.toThrow();
   });
 

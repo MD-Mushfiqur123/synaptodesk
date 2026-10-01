@@ -1,8 +1,8 @@
 import { describe, expect, test } from "bun:test";
 import {
-  createControl,
   ControlError,
   ControlRequestError,
+  createControl,
   HELP_REQUEST_TTL_MS,
   SnapshotRequiredError,
 } from "../src/control";

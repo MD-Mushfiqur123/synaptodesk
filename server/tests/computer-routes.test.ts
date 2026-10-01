@@ -100,7 +100,9 @@ describe("computer fleet listing", () => {
       ],
     }));
 
-    const response = await app.request("http://synaptodesk.test/any-bot/computers");
+    const response = await app.request(
+      "http://synaptodesk.test/any-bot/computers",
+    );
 
     expect(response.status).toBe(403);
     await expect(response.json()).resolves.toEqual({
@@ -125,7 +127,9 @@ describe("computer fleet listing", () => {
     };
     const { app, listed } = appFor(administrator, async () => fleet);
 
-    const response = await app.request("http://synaptodesk.test/any-bot/computers");
+    const response = await app.request(
+      "http://synaptodesk.test/any-bot/computers",
+    );
 
     expect(response.status).toBe(200);
     await expect(response.json()).resolves.toEqual(fleet);

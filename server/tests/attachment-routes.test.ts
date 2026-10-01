@@ -17,8 +17,8 @@ import {
   createAttachmentRoutes,
   createChannelAttachmentRoutes,
   loadAttachmentForTurn,
-  markAttachmentsSent,
   MAX_STAGED_ATTACHMENTS_PER_UPLOADER,
+  markAttachmentsSent,
 } from "../src/channels/attachments";
 import { loadConfig } from "../src/config";
 import type { Database } from "../src/db/client";

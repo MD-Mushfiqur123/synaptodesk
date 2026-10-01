@@ -338,11 +338,14 @@ describe("POST /api/plugins/call", () => {
     ["a whitespace ref", { ref: "  ", agentId: "bot-1" }],
   ])("refuses %s with 400 and never reaches the store", async (_n, body) => {
     const calls = { grants: [] as unknown[], toolCalls: [] as unknown[] };
-    const response = await appWith(calls).request("http://synaptodesk.test/call", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(body),
-    });
+    const response = await appWith(calls).request(
+      "http://synaptodesk.test/call",
+      {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(body),
+      },
+    );
 
     expect(response.status).toBe(400);
     await expect(response.json()).resolves.toEqual({

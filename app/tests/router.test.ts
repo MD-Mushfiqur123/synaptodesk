@@ -3,8 +3,8 @@ import { router } from "../src/router";
 import {
   routeBuildRollupOutputOptions,
   routeCodeSplittingOptions,
-  selectSynaptoDeskManualChunk,
   selectedRouteSplitBehavior,
+  selectSynaptoDeskManualChunk,
 } from "../vite.config";
 
 test("provides the generated index route", () => {

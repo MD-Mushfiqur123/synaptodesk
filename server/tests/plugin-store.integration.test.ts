@@ -2868,8 +2868,11 @@ describe("a dynamic client the vendor has evicted", () => {
     expect(
       registeredBy(registered, "someone@synaptodesk.test", FRESH.clientId),
     ).toBe(
-      registeredBy(registeredBefore, "someone@synaptodesk.test", FRESH.clientId) +
-        1,
+      registeredBy(
+        registeredBefore,
+        "someone@synaptodesk.test",
+        FRESH.clientId,
+      ) + 1,
     );
   });
 
@@ -2949,7 +2952,10 @@ describe("a dynamic client the vendor has evicted", () => {
 
     try {
       expect(
-        await dynamicStore.ensureOAuthClient(serverId, "someone@synaptodesk.test"),
+        await dynamicStore.ensureOAuthClient(
+          serverId,
+          "someone@synaptodesk.test",
+        ),
       ).toBeNull();
       expect(registrations).toEqual([]);
     } finally {
@@ -7716,7 +7722,12 @@ describe("a vault read that fails on a query of this deployment's own", () => {
       name: faultToolName,
       description: "Do something.",
     });
-    await faultStore.grant("mcp", faultRef, faultBotId, "admin@synaptodesk.local");
+    await faultStore.grant(
+      "mcp",
+      faultRef,
+      faultBotId,
+      "admin@synaptodesk.local",
+    );
   });
 
   afterAll(async () => {

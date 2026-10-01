@@ -33,7 +33,8 @@ export function mountDesktopConnectionFailure<T extends Env>(
   const expected = hostToken?.trim();
   if (!expected) return;
   app.get("/api/desktop/connection-failure", (context) => {
-    const offered = context.req.header("x-synaptodesk-desktop-host-token") ?? "";
+    const offered =
+      context.req.header("x-synaptodesk-desktop-host-token") ?? "";
     const a = Buffer.from(offered),
       b = Buffer.from(expected);
     if (a.length !== b.length || !timingSafeEqual(a, b))

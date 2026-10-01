@@ -144,7 +144,9 @@ const synaptodesk = new Agent({
 /** The one header SynaptoDesk's server sends, compared without leaking length through timing. */
 function carriesTheServerToken(request: Request): boolean {
   const expected = (process.env.MANAGED_AGENT_TOKEN ?? "").trim();
-  const offered = (request.headers.get("x-synaptodesk-agent-token") ?? "").trim();
+  const offered = (
+    request.headers.get("x-synaptodesk-agent-token") ?? ""
+  ).trim();
   // Unset means unconfigured, not open.
   if (!expected || offered.length !== expected.length) return false;
   let difference = 0;

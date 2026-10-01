@@ -7,7 +7,7 @@ import {
   test,
 } from "bun:test";
 import type Docker from "dockerode";
-import { namesFor, NAMESPACE } from "../../src/names";
+import { NAMESPACE, namesFor } from "../../src/names";
 
 // Launched by docker.integration.test.ts in a fresh process: names.ts reads its namespace once.
 const namespace = NAMESPACE;

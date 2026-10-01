@@ -28,7 +28,11 @@ import {
  * model is never asked a question the person already answered.
  */
 
-const ACTOR = { id: "u1", email: "person@synaptodesk.test", role: "user" } as const;
+const ACTOR = {
+  id: "u1",
+  email: "person@synaptodesk.test",
+  role: "user",
+} as const;
 
 const ROSTER = [
   {

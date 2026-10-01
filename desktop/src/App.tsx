@@ -786,7 +786,9 @@ export function App() {
         <div className="sheet">
           <p className="steps-of">Step 2 of 4</p>
           <h1>
-            {installationReady ? "Installation complete" : "Install SynaptoDesk"}
+            {installationReady
+              ? "Installation complete"
+              : "Install SynaptoDesk"}
           </h1>
           <p className="lede">
             {installationReady
@@ -881,7 +883,9 @@ export function App() {
           }
           onOpen={() => {
             savedLaunch.current = installationKey;
-            invoke("show_synaptodesk").catch((error) => recoverFromStart(error));
+            invoke("show_synaptodesk").catch((error) =>
+              recoverFromStart(error),
+            );
           }}
           onBack={changeModelAfterAskFailure}
         />
@@ -1136,8 +1140,8 @@ export function App() {
             ) : (
               <>
                 <p className="lede">
-                  SynaptoDesk keeps your conversations in CopilotKit. Sign in and it
-                  sets the rest up for you.
+                  SynaptoDesk keeps your conversations in CopilotKit. Sign in
+                  and it sets the rest up for you.
                 </p>
                 <div className="row connection-actions">
                   <button
@@ -1237,8 +1241,8 @@ export function App() {
             <details>
               <summary>Sign in through your organization</summary>
               <p className="footnote">
-                Enter your organization’s SynaptoDesk address to use its sign-in and
-                access rules.
+                Enter your organization’s SynaptoDesk address to use its sign-in
+                and access rules.
               </p>
               <div className="field">
                 <label htmlFor="organization-authority">

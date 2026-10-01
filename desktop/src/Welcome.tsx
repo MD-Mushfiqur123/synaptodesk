@@ -23,8 +23,8 @@ export function Welcome({ onStart }: { onStart: () => void }) {
         </button>
       </div>
       <p className="footnote">
-        Takes a few minutes. SynaptoDesk installs what it needs first, then asks you
-        to sign in to the AI plan you already have.
+        Takes a few minutes. SynaptoDesk installs what it needs first, then asks
+        you to sign in to the AI plan you already have.
       </p>
     </div>
   );

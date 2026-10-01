@@ -29,8 +29,8 @@ import { checkComputerAddress } from "./target";
 export {
   ComputerUnavailableError,
   ElementNotFoundError,
-  HumanHasControlError,
   HandoffRequestError,
+  HumanHasControlError,
   NavigationRefusedError,
   StaleSnapshotError,
   WorkspaceRefusedError,
@@ -42,8 +42,8 @@ import {
   type ActionPolicy,
   evaluateActionPolicy,
   type PolicyContext,
-  policyInitiator,
   type PolicyDecision,
+  policyInitiator,
 } from "./policy";
 import type { ComputerProvider } from "./provider";
 import type {

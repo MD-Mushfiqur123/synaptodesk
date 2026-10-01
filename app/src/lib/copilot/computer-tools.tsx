@@ -5,22 +5,22 @@ import { CommandOutput } from "@/components/computer/command-output";
 import { ComputerView } from "@/components/computer/computer-view";
 import { tryClient } from "@/lib/client";
 import { noteBrowsed, recordActivity } from "@/lib/computers/activity";
-import { type ControlState, readControl } from "@/lib/computers/control";
-import { useActiveBotHolder } from "./active-bot";
 import { callComputer, type ToolOutcome } from "@/lib/computers/call";
+import { type ControlState, readControl } from "@/lib/computers/control";
 import {
   runBrowserRead,
   runHelpRequest,
   runNavigation,
 } from "@/lib/computers/handoff";
+import { useActiveBotHolder } from "./active-bot";
 
 /**
  * Frontend registrations for computer tools, including inline rendering and policy-refusal display.
  */
 
+export type { ToolOutcome } from "@/lib/computers/call";
 /** What every computer call returns to the model: either the result, or a reason it did not happen. */
 export { callComputer } from "@/lib/computers/call";
-export type { ToolOutcome } from "@/lib/computers/call";
 
 /**
  * Secret-entry wait window. Browser takeovers use server-authoritative request state instead.

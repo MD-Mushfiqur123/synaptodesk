@@ -47,7 +47,9 @@ describe("server authorization", () => {
       rolesForUser: async () => ["user"],
     });
 
-    const response = await app.request("http://synaptodesk.local/api/admin/status");
+    const response = await app.request(
+      "http://synaptodesk.local/api/admin/status",
+    );
 
     expect(response.status).toBe(403);
     await expect(response.json()).resolves.toEqual({
@@ -81,7 +83,9 @@ describe("server authorization", () => {
       rolesForUser: async () => ["admin"],
     });
 
-    const response = await app.request("http://synaptodesk.local/api/admin/status");
+    const response = await app.request(
+      "http://synaptodesk.local/api/admin/status",
+    );
 
     expect(response.status).toBe(200);
     await expect(response.json()).resolves.toEqual({ status: "ok" });

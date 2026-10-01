@@ -17,7 +17,10 @@ function branded(
   return {
     ...component,
     render: (props) => (
-      <div data-synaptodesk-a2ui={component.name} style={{ display: "contents" }}>
+      <div
+        data-synaptodesk-a2ui={component.name}
+        style={{ display: "contents" }}
+      >
         <Render {...props} />
       </div>
     ),
@@ -31,9 +34,9 @@ export const SYNAPTODESK_A2UI_CATALOG = new Catalog(
   basicCatalog.themeSchema,
 );
 
-const A2UI_OPTIONS = { catalog: SYNAPTODESK_A2UI_CATALOG } satisfies NonNullable<
-  CopilotKitProviderProps["a2ui"]
->;
+const A2UI_OPTIONS = {
+  catalog: SYNAPTODESK_A2UI_CATALOG,
+} satisfies NonNullable<CopilotKitProviderProps["a2ui"]>;
 
 /** Prop presence activates the SDK, so an unresolved or disabled capability must omit it. */
 export function a2uiProviderOptions(enabled: boolean | undefined) {

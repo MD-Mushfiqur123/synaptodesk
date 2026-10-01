@@ -1,20 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <title>SynaptoDesk Master Vector Logo</title>
   <!-- Background -->
   <rect width="512" height="512" fill="#000000" rx="96" />
   
-  <!-- Outer Pixel Border / Head Frame -->
-  <rect x="64" y="64" width="384" height="384" rx="48" fill="#000000" stroke="#ffffff" stroke-width="24" />
+  <!-- Outer Neural Squircle Border -->
+  <rect x="64" y="64" width="384" height="384" rx="64" fill="none" stroke="#ffffff" stroke-width="24" />
   
-  <!-- Pixel Grid Bot Face Elements -->
-  <!-- Left Eye: Pixelated Pill Bar -->
-  <rect x="144" y="160" width="48" height="128" rx="16" fill="#ffffff" />
+  <!-- Left Eye: Geometric Capsule Pixel -->
+  <rect x="144" y="176" width="48" height="112" rx="16" fill="#ffffff" />
   
-  <!-- Right Eye: Pixelated Pill Bar with Asymmetric Synaptic Notch -->
-  <rect x="320" y="160" width="48" height="128" rx="16" fill="#ffffff" />
-  <rect x="336" y="192" width="16" height="32" rx="4" fill="#000000" />
+  <!-- Right Eye: Neural Capsule with Synaptic Core -->
+  <rect x="320" y="176" width="48" height="112" rx="16" fill="#ffffff" />
+  <rect x="336" y="208" width="16" height="32" rx="4" fill="#000000" />
   
-  <!-- Synaptic Connective Pixel Dot in Center -->
-  <rect x="240" y="208" width="32" height="32" rx="8" fill="#ffffff" />
+  <!-- Center Synapse Node -->
+  <rect x="240" y="224" width="32" height="32" rx="8" fill="#ffffff" />
   
   <!-- Mouth: Geometric Pixel Slot -->
   <rect x="144" y="352" width="224" height="36" rx="12" fill="#ffffff" />

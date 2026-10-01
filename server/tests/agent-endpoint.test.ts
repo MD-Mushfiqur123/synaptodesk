@@ -354,7 +354,10 @@ describe("dialling a stored agent endpoint", () => {
     },
     body: JSON.stringify({
       threadId: "t",
-      forwardedProps: { synaptodeskBotId: "risk", synaptodeskRun: "signed.run.token" },
+      forwardedProps: {
+        synaptodeskBotId: "risk",
+        synaptodeskRun: "signed.run.token",
+      },
     }),
   };
 

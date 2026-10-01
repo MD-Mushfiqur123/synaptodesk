@@ -297,7 +297,8 @@ export const CATALOGUE: readonly CatalogueEntry[] = Object.freeze([
       "update_routine",
       "delete_routine",
     ]),
-    docsUrl: "https://github.com/MD-Mushfiqur123/SynaptoDesk/blob/main/docs/routines.md",
+    docsUrl:
+      "https://github.com/MD-Mushfiqur123/SynaptoDesk/blob/main/docs/routines.md",
   },
 ]);
 

@@ -1,14 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { supplySecret } from "@/lib/computers/control";
-import { useComputerControl } from "@/lib/computers/use-control";
-import { ComputerControlButton } from "./computer-controls";
 import {
   readPageFrame,
   readScreenshot,
   type Screenshot,
 } from "@/lib/computers/screen";
+import { useComputerControl } from "@/lib/computers/use-control";
 import { ChannelAvatar } from "../channels/avatar";
+import { ComputerControlButton } from "./computer-controls";
 import { LiveScreen } from "./live-screen";
 import { useElementVisible, usePageVisible } from "./preview-visibility";
 

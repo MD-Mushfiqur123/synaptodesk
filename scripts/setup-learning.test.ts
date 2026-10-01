@@ -19,7 +19,11 @@ const container = (action: string, projectId = "12") => ({
   command: `learning containers ${action}`,
   status: "success",
   projectId,
-  container: { id: "synaptodesk", projectId: Number(projectId), name: "SynaptoDesk" },
+  container: {
+    id: "synaptodesk",
+    projectId: Number(projectId),
+    name: "SynaptoDesk",
+  },
 });
 const missing = {
   schemaVersion: 1,
@@ -29,7 +33,9 @@ const missing = {
 };
 
 async function fixture(extra = "") {
-  const directory = await mkdtemp(join(tmpdir(), "synaptodesk-learning-setup-"));
+  const directory = await mkdtemp(
+    join(tmpdir(), "synaptodesk-learning-setup-"),
+  );
   directories.push(directory);
   await mkdir(join(directory, ".copilotkit"));
   await writeFile(

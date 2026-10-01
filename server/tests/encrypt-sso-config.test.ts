@@ -107,7 +107,10 @@ describe("the identity provider config in the database", () => {
     const fake = fakeAdapter();
     await wrap(fake.adapter).create({
       model: "user",
-      data: { email: "someone@synaptodesk.test", oidcConfig: "not-a-secret-here" },
+      data: {
+        email: "someone@synaptodesk.test",
+        oidcConfig: "not-a-secret-here",
+      },
     });
 
     expect(fake.stored[0]?.oidcConfig).toBe("not-a-secret-here");

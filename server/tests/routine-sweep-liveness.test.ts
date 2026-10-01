@@ -5,7 +5,11 @@ import type { AppVariables } from "../src/auth/guards";
 import { createRoutineRoutes, SWEEP_SILENCE_MS } from "../src/routines/routes";
 import type { RoutineStore } from "../src/routines/store";
 
-const actor = { id: "user-1", email: "a@synaptodesk.test", role: "user" } as const;
+const actor = {
+  id: "user-1",
+  email: "a@synaptodesk.test",
+  role: "user",
+} as const;
 
 function app(lastSweptAt: Date | null) {
   const store = {

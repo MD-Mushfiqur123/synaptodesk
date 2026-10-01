@@ -234,7 +234,10 @@ describe("agent lifecycle routes", () => {
     ];
 
     for (const [path, init] of requests) {
-      const response = await app.request(`http://synaptodesk.test${path}`, init);
+      const response = await app.request(
+        `http://synaptodesk.test${path}`,
+        init,
+      );
       expect(response.status).toBe(401);
     }
     expect(store.calls).toEqual([]);
@@ -251,9 +254,9 @@ describe("agent lifecycle routes", () => {
       "?hidden=1",
       "?hidden=true",
     ]) {
-      expect((await app.request(`http://synaptodesk.test/${query}`)).status).toBe(
-        200,
-      );
+      expect(
+        (await app.request(`http://synaptodesk.test/${query}`)).status,
+      ).toBe(200);
     }
 
     expect(store.calls).toEqual([
@@ -290,15 +293,21 @@ describe("agent lifecycle routes", () => {
     const hidden = await app.request("http://synaptodesk.test/agent-1/hide", {
       method: "POST",
     });
-    const unhidden = await app.request("http://synaptodesk.test/agent-1/unhide", {
-      method: "POST",
-    });
+    const unhidden = await app.request(
+      "http://synaptodesk.test/agent-1/unhide",
+      {
+        method: "POST",
+      },
+    );
     const pinned = await app.request("http://synaptodesk.test/agent-1/pin", {
       method: "POST",
     });
-    const unpinned = await app.request("http://synaptodesk.test/agent-1/unpin", {
-      method: "POST",
-    });
+    const unpinned = await app.request(
+      "http://synaptodesk.test/agent-1/unpin",
+      {
+        method: "POST",
+      },
+    );
     const deleted = await app.request("http://synaptodesk.test/agent-1", {
       method: "DELETE",
     });
@@ -428,7 +437,9 @@ describe("agent lifecycle routes", () => {
     });
 
     const body = (await json(
-      await appFor(store, requireAdministrator).request("http://synaptodesk.test/"),
+      await appFor(store, requireAdministrator).request(
+        "http://synaptodesk.test/",
+      ),
     )) as { agents: { id: string; canManage: boolean; mine: boolean }[] };
 
     // An administrator may manage everybody's coworkers but only created their own. A roster that
@@ -510,7 +521,9 @@ describe("agent lifecycle routes", () => {
   test("returns 404 when get returns null", async () => {
     const store = fakeStore({ get: async () => null });
 
-    const response = await appFor(store).request("http://synaptodesk.test/missing");
+    const response = await appFor(store).request(
+      "http://synaptodesk.test/missing",
+    );
 
     expect(response.status).toBe(404);
     expect(await json(response)).toEqual({ error: "Agent not found." });
@@ -604,7 +617,9 @@ describe("agent route composition", () => {
       store,
     );
 
-    const unauthenticated = await app.request("http://synaptodesk.test/api/agents");
+    const unauthenticated = await app.request(
+      "http://synaptodesk.test/api/agents",
+    );
     expect(unauthenticated.status).toBe(401);
     expect(store.calls).toEqual([]);
 
@@ -616,7 +631,9 @@ describe("agent route composition", () => {
         image: "https://example.test/member.png",
       },
     };
-    const authenticated = await app.request("http://synaptodesk.test/api/agents");
+    const authenticated = await app.request(
+      "http://synaptodesk.test/api/agents",
+    );
 
     expect(authenticated.status).toBe(200);
     expect(store.calls).toEqual([

@@ -1,5 +1,8 @@
 import { describe, expect, test } from "bun:test";
-import { buildSynaptoDeskInstructions, synaptodeskBaseInstructions } from "./index";
+import {
+  buildSynaptoDeskInstructions,
+  synaptodeskBaseInstructions,
+} from "./index";
 
 type ModelCase = {
   name: string;

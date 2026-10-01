@@ -59,7 +59,9 @@ describe("deployment configuration", () => {
     });
     expect(config.singleUser).toBe(false);
     expect(config.auth).toBeUndefined();
-    expect(config.organizationAuthUrl).toBe("https://synaptodesk.company.example");
+    expect(config.organizationAuthUrl).toBe(
+      "https://synaptodesk.company.example",
+    );
     expect(config.runtime.intelligence.apiKey).toBe("tenant-api-key");
   });
   test("resolves the Intelligence runtime, which is the only runtime", () => {
@@ -522,14 +524,26 @@ describe("deployment configuration", () => {
   // NODE_ENV: the image and the chart both set it to production for every deployment, the local
   // trial included, so it says nothing about who can reach this.
   test.each([
-    ["a public URL", { SYNAPTODESK_PUBLIC_URL: "https://synaptodesk.example.com" }],
+    [
+      "a public URL",
+      { SYNAPTODESK_PUBLIC_URL: "https://synaptodesk.example.com" },
+    ],
     ["an app URL", { SYNAPTODESK_APP_URL: "https://synaptodesk.example.com" }],
-    ["a trusted origin", { TRUSTED_ORIGINS: "https://synaptodesk.example.com" }],
+    [
+      "a trusted origin",
+      { TRUSTED_ORIGINS: "https://synaptodesk.example.com" },
+    ],
     [
       "one published origin among loopback ones",
-      { TRUSTED_ORIGINS: "http://localhost:3010,https://synaptodesk.example.com" },
+      {
+        TRUSTED_ORIGINS:
+          "http://localhost:3010,https://synaptodesk.example.com",
+      },
     ],
-    ["an address that is not a URL at all", { SYNAPTODESK_PUBLIC_URL: "synaptodesk" }],
+    [
+      "an address that is not a URL at all",
+      { SYNAPTODESK_PUBLIC_URL: "synaptodesk" },
+    ],
   ])("refuses no sign-in combined with %s", (_label, published) => {
     expect(() =>
       loadConfig({ ...withoutSignIn, ...OPEN, ...published }),
@@ -542,11 +556,23 @@ describe("deployment configuration", () => {
    * this feature's own audience. They are allowed and warned about, not refused.
    */
   test.each([
-    ["a home LAN address", { SYNAPTODESK_PUBLIC_URL: "http://192.168.1.10:3001" }],
+    [
+      "a home LAN address",
+      { SYNAPTODESK_PUBLIC_URL: "http://192.168.1.10:3001" },
+    ],
     ["a 10/8 address", { SYNAPTODESK_PUBLIC_URL: "http://10.0.0.5:3001" }],
-    ["a 172.16/12 address", { SYNAPTODESK_PUBLIC_URL: "http://172.20.1.4:3001" }],
-    ["a Tailscale address", { SYNAPTODESK_PUBLIC_URL: "http://100.101.102.103" }],
-    ["a unique-local IPv6 address", { SYNAPTODESK_PUBLIC_URL: "http://[fd00::1]" }],
+    [
+      "a 172.16/12 address",
+      { SYNAPTODESK_PUBLIC_URL: "http://172.20.1.4:3001" },
+    ],
+    [
+      "a Tailscale address",
+      { SYNAPTODESK_PUBLIC_URL: "http://100.101.102.103" },
+    ],
+    [
+      "a unique-local IPv6 address",
+      { SYNAPTODESK_PUBLIC_URL: "http://[fd00::1]" },
+    ],
     ["an mDNS name", { TRUSTED_ORIGINS: "http://synaptodesk.local:3010" }],
     ["a single-label LAN name", { TRUSTED_ORIGINS: "http://nas:3010" }],
   ])("still runs with no sign-in on %s", (_label, reachable) => {
@@ -559,7 +585,10 @@ describe("deployment configuration", () => {
   // hand-written range check gets wrong, so both are pinned as refused.
   test.each([
     ["just outside 172.16/12", { SYNAPTODESK_PUBLIC_URL: "http://172.32.0.1" }],
-    ["just outside 100.64/10", { SYNAPTODESK_PUBLIC_URL: "http://100.128.0.1" }],
+    [
+      "just outside 100.64/10",
+      { SYNAPTODESK_PUBLIC_URL: "http://100.128.0.1" },
+    ],
   ])("refuses no sign-in on %s", (_label, published) => {
     expect(() =>
       loadConfig({ ...withoutSignIn, ...OPEN, ...published }),
@@ -935,19 +964,25 @@ describe("generated interfaces", () => {
     expect(loadConfig(baseEnvironment).generativeUi).toBe(true);
   });
 
-  test.each(["true", "1"])("stay on for SYNAPTODESK_GENERATIVE_UI=%p", (value) => {
-    expect(
-      loadConfig({ ...baseEnvironment, SYNAPTODESK_GENERATIVE_UI: value })
-        .generativeUi,
-    ).toBe(true);
-  });
+  test.each(["true", "1"])(
+    "stay on for SYNAPTODESK_GENERATIVE_UI=%p",
+    (value) => {
+      expect(
+        loadConfig({ ...baseEnvironment, SYNAPTODESK_GENERATIVE_UI: value })
+          .generativeUi,
+      ).toBe(true);
+    },
+  );
 
-  test.each(["false", "0"])("are off for SYNAPTODESK_GENERATIVE_UI=%p", (value) => {
-    expect(
-      loadConfig({ ...baseEnvironment, SYNAPTODESK_GENERATIVE_UI: value })
-        .generativeUi,
-    ).toBe(false);
-  });
+  test.each(["false", "0"])(
+    "are off for SYNAPTODESK_GENERATIVE_UI=%p",
+    (value) => {
+      expect(
+        loadConfig({ ...baseEnvironment, SYNAPTODESK_GENERATIVE_UI: value })
+          .generativeUi,
+      ).toBe(false);
+    },
+  );
 
   test.each(["no", "", "yes", "TRUE", "on"])(
     "stay on for SYNAPTODESK_GENERATIVE_UI=%p",

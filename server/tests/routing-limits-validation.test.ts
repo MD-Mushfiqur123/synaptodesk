@@ -1,12 +1,12 @@
 import { describe, expect, test } from "bun:test";
 import type { MiddlewareHandler } from "hono";
 import { Hono } from "hono";
-import type { AppVariables } from "../src/auth/guards";
 import { createApp } from "../src/app";
-import { loadConfig } from "../src/config";
-import { createRoutingRoutes } from "../src/routing/routes";
+import type { AppVariables } from "../src/auth/guards";
 import { createComputerRoutes } from "../src/computer/routes";
+import { loadConfig } from "../src/config";
 import type { RoutineRunner } from "../src/routines/runner";
+import { createRoutingRoutes } from "../src/routing/routes";
 import { testEnvironment } from "./support/environment";
 
 const requireUser: MiddlewareHandler<{ Variables: AppVariables }> = async (

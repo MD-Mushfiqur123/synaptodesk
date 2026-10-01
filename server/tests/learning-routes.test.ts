@@ -74,14 +74,17 @@ test("validates and persists a same-origin admin save", async () => {
     defaultTarget: { containerId: "support" },
     agents: { excluded: null },
   };
-  const response = await app.request("https://synaptodesk.example.com/settings", {
-    method: "PUT",
-    headers: {
-      "content-type": "application/json",
-      origin: "https://synaptodesk.example.com",
+  const response = await app.request(
+    "https://synaptodesk.example.com/settings",
+    {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+        origin: "https://synaptodesk.example.com",
+      },
+      body: JSON.stringify(settings),
     },
-    body: JSON.stringify(settings),
-  });
+  );
   expect(response.status).toBe(200);
   expect(await (await app.request("/settings")).json()).toEqual({ settings });
   expect(

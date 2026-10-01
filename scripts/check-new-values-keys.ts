@@ -75,10 +75,14 @@ function paths(value: unknown, prefix = ""): string[] {
 
 const before = new Set(
   paths(
-    parse(await run(["git", "show", `${since}:charts/synaptodesk/values.yaml`])),
+    parse(
+      await run(["git", "show", `${since}:charts/synaptodesk/values.yaml`]),
+    ),
   ),
 );
-const now = paths(parse(await Bun.file("charts/synaptodesk/values.yaml").text()));
+const now = paths(
+  parse(await Bun.file("charts/synaptodesk/values.yaml").text()),
+);
 /*
  * A key whose parent is also new is covered by nulling the parent, and nulling both is the same
  * test twice. The parent is the harsher of the two, because that is what --reuse-values actually

@@ -81,7 +81,8 @@ function appWith(
   );
 
   return {
-    request: (path, init) => app.request(`http://synaptodesk.test${path}`, init),
+    request: (path, init) =>
+      app.request(`http://synaptodesk.test${path}`, init),
     calls,
   };
 }
@@ -243,7 +244,9 @@ describe("people routes", () => {
       { rolesForUser: async () => ["admin"] },
     );
 
-    const response = await app.request("http://synaptodesk.test/api/admin/people");
+    const response = await app.request(
+      "http://synaptodesk.test/api/admin/people",
+    );
 
     expect(response.status).toBe(503);
   });

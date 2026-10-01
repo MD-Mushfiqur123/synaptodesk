@@ -76,7 +76,9 @@ describe("serving port configuration", () => {
       expect(result.stdout).toContain(
         'PORT_PROBE:{"port":3010,"target":"http://127.0.0.1:3001/api/port-check"}',
       );
-      expect(result.stdout).toContain("SynaptoDesk app on http://127.0.0.1:3010");
+      expect(result.stdout).toContain(
+        "SynaptoDesk app on http://127.0.0.1:3010",
+      );
     },
   );
 

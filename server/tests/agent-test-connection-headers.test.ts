@@ -129,14 +129,17 @@ describe("POST /test-connection header validation", () => {
 
   test("invalid headers answer 400 without probing", async () => {
     const app = appFor();
-    const response = await app.request("http://synaptodesk.test/test-connection", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({
-        endpoint: "https://agent.example/ag-ui",
-        headers: { Authorization: ["Bearer x"] },
-      }),
-    });
+    const response = await app.request(
+      "http://synaptodesk.test/test-connection",
+      {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          endpoint: "https://agent.example/ag-ui",
+          headers: { Authorization: ["Bearer x"] },
+        }),
+      },
+    );
 
     expect(response.status).toBe(400);
     const body = (await response.json()) as { error: string };
@@ -150,11 +153,14 @@ describe("POST /test-connection header validation", () => {
     const rawBody = JSON.stringify({
       endpoint: "https://agent.example/ag-ui",
     }).replace(/}$/, ',"headers":{"__proto__":"polluted"}}');
-    const response = await app.request("http://synaptodesk.test/test-connection", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: rawBody,
-    });
+    const response = await app.request(
+      "http://synaptodesk.test/test-connection",
+      {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: rawBody,
+      },
+    );
 
     expect(response.status).toBe(400);
   });

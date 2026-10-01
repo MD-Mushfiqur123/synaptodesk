@@ -113,7 +113,9 @@ describe("a Bot named after a deployment route, end to end", () => {
       // arrive. Nothing arriving therefore means the guard, not the gateway, ended the request.
       const { app, asked } = appFor(baseUrl, "never-this-bot");
 
-      const response = await app.request(`http://synaptodesk.test/${name}/read`);
+      const response = await app.request(
+        `http://synaptodesk.test/${name}/read`,
+      );
 
       expect(response.status).toBe(404);
       expect(received).toEqual([]);

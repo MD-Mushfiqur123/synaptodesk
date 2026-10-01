@@ -9,9 +9,9 @@ import {
 } from "./aria-snapshot";
 import {
   actsOnTheComputer,
-  mutatesBrowser,
   isOpenPath,
   matchesToken,
+  mutatesBrowser,
   offeredToken,
 } from "./authorisation";
 import { isPlainBotId } from "./bot-id";
@@ -20,8 +20,8 @@ import { detectChallenge } from "./challenge";
 import {
   ControlError,
   ControlRequestError,
-  SnapshotRequiredError,
   NO_SECRET_PENDING,
+  SnapshotRequiredError,
   TAKE_CONTROL_FIRST,
 } from "./control";
 import { identity } from "./identity";

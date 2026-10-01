@@ -80,7 +80,8 @@ for (const Component of [Failure, InlineFailure]) {
 }
 
 test("setup help honors a branded support URL", () => {
-  process.env.VITE_SYNAPTODESK_SUPPORT_URL = "https://support.example.test/synaptodesk";
+  process.env.VITE_SYNAPTODESK_SUPPORT_URL =
+    "https://support.example.test/synaptodesk";
   const view = render(<Failure problem={{ said: "Synthetic failure." }} />);
   expect(
     view.getByRole("link", { name: "Get setup help" }).getAttribute("href"),

@@ -96,7 +96,10 @@ async function fixture() {
   async function post(app: ReturnType<typeof router>) {
     const response = await app.request("/sessions", {
       method: "POST",
-      headers: { "content-type": "application/json", "x-synaptodesk-voice": "1" },
+      headers: {
+        "content-type": "application/json",
+        "x-synaptodesk-voice": "1",
+      },
       body: JSON.stringify(input),
     });
     expect(response.status).toBe(200);

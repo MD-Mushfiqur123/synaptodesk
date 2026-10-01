@@ -236,7 +236,8 @@ function buildModel() {
 const TOOL_URL =
   // Numeric, never `localhost`: it resolves to `::1` under Node and `127.0.0.1` under bun, so a
   // name here reaches a different interface depending on what started the process.
-  process.env.SYNAPTODESK_TOOL_URL ?? "http://127.0.0.1:3001/api/agent-tools/call";
+  process.env.SYNAPTODESK_TOOL_URL ??
+  "http://127.0.0.1:3001/api/agent-tools/call";
 const TOOL_TOKEN = process.env.AGENT_TOOL_TOKEN ?? "";
 
 async function callTool(
@@ -286,7 +287,9 @@ async function callTool(
  * calls a tool, and the deployment that signed it is the only thing that can open it.
  */
 function runAssertionOf(input: RunAgentInput): string {
-  const props = input.forwardedProps as { synaptodeskRun?: unknown } | undefined;
+  const props = input.forwardedProps as
+    | { synaptodeskRun?: unknown }
+    | undefined;
   return typeof props?.synaptodeskRun === "string" ? props.synaptodeskRun : "";
 }
 

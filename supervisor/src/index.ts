@@ -1,6 +1,6 @@
 import { serve } from "bun";
 import { Hono } from "hono";
-import { environmentFor } from "./environment";
+import { computerMemoryBytes } from "./computer-memory-bytes";
 import {
   ComputerNotAnsweringError,
   DockerUnavailableError,
@@ -11,10 +11,10 @@ import {
   reset,
   stop,
 } from "./docker";
+import { environmentFor } from "./environment";
 import { registerEntry } from "./identity";
-import { namesFor } from "./names";
-import { computerMemoryBytes } from "./computer-memory-bytes";
 import { listenPort } from "./listen-port";
+import { namesFor } from "./names";
 
 /**
  * The container supervisor: the only thing here that holds the Docker socket.

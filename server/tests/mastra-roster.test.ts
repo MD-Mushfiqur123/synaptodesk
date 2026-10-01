@@ -17,7 +17,9 @@ describe("which agent on a Mastra server a Bot means", () => {
   });
 
   test("the only agent on a single-agent server, when no name was asked for", () => {
-    expect(pickFromRoster(["synaptodesk"], { id: "bot-7" })).toBe("synaptodesk");
+    expect(pickFromRoster(["synaptodesk"], { id: "bot-7" })).toBe(
+      "synaptodesk",
+    );
   });
 
   test("a name that was asked for is never replaced by the only agent present", () => {

@@ -36,9 +36,9 @@ import { desktopTelemetryProperties } from "./desktop-telemetry";
 import { observeIntelligenceAuthentication } from "./intelligence-client";
 import { RemoteLearnedSkillsMiddleware } from "./learning/remote";
 import {
+  type AcquireLearnedSkills,
   createLearningRuntime,
   LEARNED_SKILL_TOOL_NAMES,
-  type AcquireLearnedSkills,
   type LearnedSkillInvocation,
   type LearningRuntime,
 } from "./learning/runtime";
@@ -1473,7 +1473,9 @@ class CloningRemoteAgent extends AbstractAgent {
 
   constructor(
     remote: AbstractAgent,
-    private readonly attachSynaptoDeskMiddleware: (target: AbstractAgent) => void,
+    private readonly attachSynaptoDeskMiddleware: (
+      target: AbstractAgent,
+    ) => void,
   ) {
     super({
       agentId: remote.agentId,

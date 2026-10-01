@@ -43,11 +43,14 @@ describe("POST /api/plugins/call args", () => {
   ])("refuses %s with 400 and never reaches the store", async (_n, args) => {
     const calls: unknown[] = [];
     const body = { ref: "s/t", agentId: "bot-1", args };
-    const response = await appWith(calls).request("http://synaptodesk.test/call", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(body),
-    });
+    const response = await appWith(calls).request(
+      "http://synaptodesk.test/call",
+      {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(body),
+      },
+    );
 
     expect(response.status).toBe(400);
     expect(await response.json()).toEqual({
@@ -98,11 +101,14 @@ describe("POST /api/components/:name/call args", () => {
     );
 
     for (const args of ["oops", 42, [1]]) {
-      const response = await app.request("http://synaptodesk.test/widget/call", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ function: "f", agentId: "bot-1", args }),
-      });
+      const response = await app.request(
+        "http://synaptodesk.test/widget/call",
+        {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ function: "f", agentId: "bot-1", args }),
+        },
+      );
       expect(response.status).toBe(400);
       expect(await response.json()).toEqual({
         error: "Function arguments must be an object.",

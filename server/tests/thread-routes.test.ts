@@ -31,9 +31,12 @@ function app(reader?: ThreadReader) {
 }
 
 async function mint() {
-  const response = await app().request("http://synaptodesk.local/threads/mint", {
-    method: "POST",
-  });
+  const response = await app().request(
+    "http://synaptodesk.local/threads/mint",
+    {
+      method: "POST",
+    },
+  );
   return (await response.json()) as { threadId: string };
 }
 

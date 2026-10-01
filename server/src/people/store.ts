@@ -1,5 +1,9 @@
 import { and, eq, inArray, sql } from "drizzle-orm";
-import { isConfiguredAdmin, type SynaptoDeskRole, setRole } from "../auth/roles";
+import {
+  isConfiguredAdmin,
+  type SynaptoDeskRole,
+  setRole,
+} from "../auth/roles";
 import type { Database } from "../db/client";
 import {
   accounts,

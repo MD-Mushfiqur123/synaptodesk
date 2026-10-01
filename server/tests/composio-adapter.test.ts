@@ -1020,7 +1020,9 @@ describe("telling this deployment's auth configs from anybody else's", () => {
       [
         "user_1",
         "ac_ours",
-        { callbackUrl: "https://synaptodesk.test/settings/connected-accounts/x" },
+        {
+          callbackUrl: "https://synaptodesk.test/settings/connected-accounts/x",
+        },
       ],
     ]);
   });
@@ -1506,7 +1508,11 @@ describe("telling this deployment's auth configs from anybody else's", () => {
           // A listing that omitted them would find nothing and create the split it exists to stop.
           list: async () => ({
             items: [
-              { id: "ac_ours", name: "Linear (SynaptoDesk)", status: "DISABLED" },
+              {
+                id: "ac_ours",
+                name: "Linear (SynaptoDesk)",
+                status: "DISABLED",
+              },
             ],
           }),
           create: async (...call: unknown[]) => {
@@ -1532,7 +1538,11 @@ describe("telling this deployment's auth configs from anybody else's", () => {
         authConfigs: {
           list: async () => ({
             items: [
-              { id: "ac_ours", name: "Linear (SynaptoDesk)", status: "DISABLED" },
+              {
+                id: "ac_ours",
+                name: "Linear (SynaptoDesk)",
+                status: "DISABLED",
+              },
             ],
           }),
         },
@@ -2672,7 +2682,11 @@ describe("refusals a route can tell from an outage", () => {
         authConfigs: {
           list: async () => ({
             items: [
-              { id: "ac_ours", name: "Linear (SynaptoDesk)", status: "ENABLED" },
+              {
+                id: "ac_ours",
+                name: "Linear (SynaptoDesk)",
+                status: "ENABLED",
+              },
             ],
           }),
         },
@@ -3704,7 +3718,9 @@ describe("a vendor listing that is not the shape it is declared to be", () => {
         {
           shape: "a row whose id is null",
           answer: {
-            items: [{ id: null, name: "Linear (SynaptoDesk)", status: "ENABLED" }],
+            items: [
+              { id: null, name: "Linear (SynaptoDesk)", status: "ENABLED" },
+            ],
           },
         },
       ],
@@ -4724,7 +4740,9 @@ describe("what a malformed field of a row actually costs", () => {
       fakeVendor({
         authConfigs: {
           list: async () => ({
-            items: [{ id: "   ", name: "Linear (SynaptoDesk)", status: "ENABLED" }],
+            items: [
+              { id: "   ", name: "Linear (SynaptoDesk)", status: "ENABLED" },
+            ],
           }),
         },
       }),
@@ -5409,7 +5427,11 @@ describe("a field Composio padded with whitespace", () => {
         authConfigs: {
           list: async () => ({
             items: [
-              { id: " ac_ours ", name: "Linear (SynaptoDesk)", status: "ENABLED" },
+              {
+                id: " ac_ours ",
+                name: "Linear (SynaptoDesk)",
+                status: "ENABLED",
+              },
             ],
           }),
           delete: async (...call: unknown[]) => {
@@ -5591,7 +5613,11 @@ describe("a field Composio padded with whitespace", () => {
         authConfigs: {
           list: async () => ({
             items: [
-              { id: "ac_ours", name: "Linear (SynaptoDesk)", status: " ENABLED " },
+              {
+                id: "ac_ours",
+                name: "Linear (SynaptoDesk)",
+                status: " ENABLED ",
+              },
             ],
           }),
         },
@@ -5627,7 +5653,11 @@ describe("a field Composio padded with whitespace", () => {
         authConfigs: {
           list: async () => ({
             items: [
-              { id: "ac_ours", name: "Linear (SynaptoDesk)", status: " ENABLED " },
+              {
+                id: "ac_ours",
+                name: "Linear (SynaptoDesk)",
+                status: " ENABLED ",
+              },
             ],
           }),
         },
@@ -5664,7 +5694,11 @@ describe("a field Composio padded with whitespace", () => {
         authConfigs: {
           list: async () => ({
             items: [
-              { id: "ac_ours", name: "Linear (SynaptoDesk)", status: " DISABLED " },
+              {
+                id: "ac_ours",
+                name: "Linear (SynaptoDesk)",
+                status: " DISABLED ",
+              },
             ],
           }),
         },
@@ -7811,7 +7845,11 @@ describe("connecting one person with the secret they typed", () => {
         authConfigs: {
           list: async () => ({
             items: [
-              { id: "ac_ours", name: "Linear (SynaptoDesk)", status: "DISABLED" },
+              {
+                id: "ac_ours",
+                name: "Linear (SynaptoDesk)",
+                status: "DISABLED",
+              },
             ],
           }),
         },

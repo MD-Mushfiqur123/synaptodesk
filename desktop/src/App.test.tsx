@@ -89,14 +89,18 @@ function setupEvents() {
 }
 
 async function enterInstallation(view: Awaited<ReturnType<typeof renderApp>>) {
-  await userEvent.click(view.getByRole("button", { name: "Set up SynaptoDesk" }));
+  await userEvent.click(
+    view.getByRole("button", { name: "Set up SynaptoDesk" }),
+  );
   await userEvent.click(view.getByRole("button", { name: "Continue" }));
 }
 
 async function completeInstallation(
   view: Awaited<ReturnType<typeof renderApp>>,
 ) {
-  await userEvent.click(view.getByRole("button", { name: "Install SynaptoDesk" }));
+  await userEvent.click(
+    view.getByRole("button", { name: "Install SynaptoDesk" }),
+  );
   await userEvent.click(
     await view.findByRole("button", { name: "Continue to sign in" }),
   );
@@ -120,7 +124,9 @@ async function beginPendingInstallation() {
       : previous(command, args);
   const view = await renderApp();
   await enterInstallation(view);
-  await userEvent.click(view.getByRole("button", { name: "Install SynaptoDesk" }));
+  await userEvent.click(
+    view.getByRole("button", { name: "Install SynaptoDesk" }),
+  );
   return {
     view,
     preparation,
@@ -145,7 +151,9 @@ test("installation shows its active stage immediately and advances elapsed time"
   const engine = within(
     view.getByRole("listitem", { name: "Container engine" }),
   );
-  expect(engine.getByText("Checking the software SynaptoDesk needs.")).toBeTruthy();
+  expect(
+    engine.getByText("Checking the software SynaptoDesk needs."),
+  ).toBeTruthy();
   expect(engine.getByText("In progress")).toBeTruthy();
   expect(engine.queryByText("✓")).toBeNull();
   await waitFor(() => expect(engine.getByText(/1s elapsed/)).toBeTruthy(), {
@@ -308,7 +316,9 @@ test("installation completes before either sign-in is available", async () => {
   };
   const view = await renderApp();
   await enterInstallation(view);
-  expect(view.getByRole("heading", { name: "Install SynaptoDesk" })).toBeTruthy();
+  expect(
+    view.getByRole("heading", { name: "Install SynaptoDesk" }),
+  ).toBeTruthy();
   expect(view.getByLabelText("Where SynaptoDesk lives")).toHaveProperty(
     "value",
     "/tmp/install-before-signin",
@@ -316,7 +326,9 @@ test("installation completes before either sign-in is available", async () => {
   expect(
     view.queryByRole("button", { name: /Sign in|Continue to sign in/i }),
   ).toBeNull();
-  await userEvent.click(view.getByRole("button", { name: "Install SynaptoDesk" }));
+  await userEvent.click(
+    view.getByRole("button", { name: "Install SynaptoDesk" }),
+  );
   expect(installationCalls()).toEqual([
     {
       command: "prepare_installation",
@@ -420,10 +432,9 @@ test("CopilotKit Back preserves the selected AI and connection settings", async 
     "value",
     "wss://intelligence.example/ws",
   );
-  expect(view.getByRole("button", { name: "Start SynaptoDesk" })).toHaveProperty(
-    "disabled",
-    false,
-  );
+  expect(
+    view.getByRole("button", { name: "Start SynaptoDesk" }),
+  ).toHaveProperty("disabled", false);
   expect(
     view.queryByRole("button", { name: "Change AI connection" }) === null,
   ).toBe(true);
@@ -454,7 +465,9 @@ test("failed installation blocks sign-in and retries before reporting completion
   };
   const view = await renderApp();
   await enterInstallation(view);
-  await userEvent.click(view.getByRole("button", { name: "Install SynaptoDesk" }));
+  await userEvent.click(
+    view.getByRole("button", { name: "Install SynaptoDesk" }),
+  );
   expect((await view.findByRole("alert")).textContent).toContain(
     "The download was interrupted.",
   );
@@ -633,7 +646,9 @@ test.each([false, true])(
     expect(
       view.queryByRole("heading", { name: "Connect to CopilotKit" }),
     ).toBeNull();
-    expect(view.queryByRole("button", { name: "Set up SynaptoDesk" })).toBeNull();
+    expect(
+      view.queryByRole("button", { name: "Set up SynaptoDesk" }),
+    ).toBeNull();
     await act(async () => launch.resolve());
     await waitFor(() =>
       expect(invokeCalls).toContainEqual({ command: "show_synaptodesk" }),
@@ -656,7 +671,9 @@ test.each([false, true])(
         ),
       ),
     ).toBe(false);
-    expect(view.queryByRole("button", { name: "Set up SynaptoDesk" })).toBeNull();
+    expect(
+      view.queryByRole("button", { name: "Set up SynaptoDesk" }),
+    ).toBeNull();
     expect(view.queryByRole("button", { name: "Ask" })).toBeNull();
   },
 );
@@ -681,14 +698,15 @@ test("a failed automatic reopen offers recovery without retrying or installing",
     invokeCalls.filter((call) => call.command === "start_stack"),
   ).toHaveLength(1);
   expect(installationCalls()).toHaveLength(0);
-  expect(view.getByRole("button", { name: "Start SynaptoDesk" })).toHaveProperty(
-    "disabled",
-    false,
-  );
+  expect(
+    view.getByRole("button", { name: "Start SynaptoDesk" }),
+  ).toHaveProperty("disabled", false);
   await userEvent.click(
     view.getByRole("button", { name: "Change installation" }),
   );
-  expect(view.getByRole("button", { name: "Install SynaptoDesk" })).toBeTruthy();
+  expect(
+    view.getByRole("button", { name: "Install SynaptoDesk" }),
+  ).toBeTruthy();
 });
 
 test("menu Stop retains the installed root for explicit Start without the wizard", async () => {
@@ -711,7 +729,9 @@ test("menu Stop retains the installed root for explicit Start without the wizard
   expect(invokeCalls.some((call) => call.command === "start_stack")).toBe(
     false,
   );
-  await userEvent.click(view.getByRole("button", { name: "Start SynaptoDesk" }));
+  await userEvent.click(
+    view.getByRole("button", { name: "Start SynaptoDesk" }),
+  );
   expect(getStartStackPayload()).toMatchObject({
     root,
     harness: { id: "mastra" },
@@ -763,7 +783,9 @@ test.each(["model", "intelligence"])(
       ),
     ).toBe(false);
     expect(installationCalls()).toHaveLength(0);
-    expect(view.queryByRole("button", { name: "Set up SynaptoDesk" })).toBeNull();
+    expect(
+      view.queryByRole("button", { name: "Set up SynaptoDesk" }),
+    ).toBeNull();
   },
 );
 
@@ -810,7 +832,9 @@ test.each(["reopen", "runtime"])(
     expect(
       view.getByRole("heading", { name: "Sign in to your organization" }),
     ).toBeTruthy();
-    expect(view.queryByRole("button", { name: "Set up SynaptoDesk" })).toBeNull();
+    expect(
+      view.queryByRole("button", { name: "Set up SynaptoDesk" }),
+    ).toBeNull();
     expect(view.queryByText(/Step \d of 4/)).toBeNull();
     await userEvent.click(
       view.getByRole("button", { name: "Continue with Google" }),
@@ -881,7 +905,9 @@ test.each(["model", "intelligence"])(
       "no longer available",
     );
     expect(view.queryByText(/Step \d of 4/)).toBeNull();
-    expect(view.queryByRole("button", { name: "Set up SynaptoDesk" })).toBeNull();
+    expect(
+      view.queryByRole("button", { name: "Set up SynaptoDesk" }),
+    ).toBeNull();
     if (connection === "model") {
       await userEvent.type(
         view.getByLabelText("OpenAI API key"),
@@ -926,7 +952,9 @@ test("reopening a retained root waits for its saved setup without flashing the w
     return previous(command, args);
   };
   const view = await renderApp();
-  expect(view.getByRole("heading", { name: "Opening SynaptoDesk" })).toBeTruthy();
+  expect(
+    view.getByRole("heading", { name: "Opening SynaptoDesk" }),
+  ).toBeTruthy();
   expect(view.queryByRole("button", { name: "Set up SynaptoDesk" })).toBeNull();
   await act(async () => configuration.resolve(savedOpenAiConfiguration()));
   // A retained folder with no successful launch still needs the setup screens.
@@ -963,9 +991,9 @@ test("an interrupted shutdown restores saved setup for explicit recovery", async
   const { root, notice } = useInterruptedShutdownSetup();
   const view = await renderApp();
   expect(view.getByRole("alert").textContent).toContain(notice);
-  expect(view.queryByRole("button", { name: "Set up SynaptoDesk" }) !== null).toBe(
-    false,
-  );
+  expect(
+    view.queryByRole("button", { name: "Set up SynaptoDesk" }) !== null,
+  ).toBe(false);
   expect(
     view.getByRole("heading", { name: "SynaptoDesk is stopped" }),
   ).toBeTruthy();
@@ -1039,9 +1067,9 @@ test.each(["model", "root", "Intelligence"])(
           ? { model: { apiKey: "new-model-key" } }
           : { apiUrl: "https://different.example/api" },
     );
-    expect(invokeCalls.some((call) => call.command === "show_synaptodesk")).toBe(
-      changed !== "root",
-    );
+    expect(
+      invokeCalls.some((call) => call.command === "show_synaptodesk"),
+    ).toBe(changed !== "root");
     expect(view.queryByRole("button", { name: "Ask" }) !== null).toBe(
       changed === "root",
     );
@@ -1109,7 +1137,9 @@ test("setup records telemetry without a consent gate and deduplicates viewed ste
   expect(setupEvents()).toEqual([
     { event: { kind: "step_viewed", step: "welcome" } },
   ]);
-  await userEvent.click(view.getByRole("button", { name: "Set up SynaptoDesk" }));
+  await userEvent.click(
+    view.getByRole("button", { name: "Set up SynaptoDesk" }),
+  );
   await userEvent.click(view.getByRole("button", { name: "Continue" }));
 
   expect(setupEvents()).toEqual([
@@ -1143,7 +1173,9 @@ test("setup records only model categories and reaches Ask when telemetry is unav
       custom_base_url: true,
     },
   });
-  await userEvent.click(view.getByRole("button", { name: "Start SynaptoDesk" }));
+  await userEvent.click(
+    view.getByRole("button", { name: "Start SynaptoDesk" }),
+  );
   await view.findByRole("button", { name: "Ask" });
   expect(setupEvents().at(-1)).toEqual({
     event: { kind: "step_viewed", step: "ask" },
@@ -1246,7 +1278,9 @@ test("leftover database recovery requires confirmation and keeps setup ready to 
     "synthetic-key",
   );
   await userEvent.click(view.getByRole("button", { name: "Continue" }));
-  await userEvent.click(view.getByRole("button", { name: "Start SynaptoDesk" }));
+  await userEvent.click(
+    view.getByRole("button", { name: "Start SynaptoDesk" }),
+  );
   const resets = () =>
     invokeCalls.filter((call) => call.command === "reset_leftover_database");
   await userEvent.click(
@@ -1286,7 +1320,9 @@ test("leftover database recovery requires confirmation and keeps setup ready to 
   ).toBeNull();
   expect(view.queryByRole("alert")).toBeNull();
   expect(starts).toBe(1);
-  await userEvent.click(view.getByRole("button", { name: "Start SynaptoDesk" }));
+  await userEvent.click(
+    view.getByRole("button", { name: "Start SynaptoDesk" }),
+  );
   await view.findByRole("button", { name: "Ask" });
   expect(installationCalls()).toHaveLength(1);
 });
@@ -1311,7 +1347,9 @@ test("database recovery failure is shown without restarting services", async () 
     "synthetic-key",
   );
   await userEvent.click(view.getByRole("button", { name: "Continue" }));
-  await userEvent.click(view.getByRole("button", { name: "Start SynaptoDesk" }));
+  await userEvent.click(
+    view.getByRole("button", { name: "Start SynaptoDesk" }),
+  );
   await userEvent.click(
     await view.findByRole("button", { name: "Reset leftover database" }),
   );
@@ -1322,10 +1360,9 @@ test("database recovery failure is shown without restarting services", async () 
   expect(
     invokeCalls.filter((call) => call.command === "start_stack"),
   ).toHaveLength(1);
-  expect(view.getByRole("button", { name: "Start SynaptoDesk" })).toHaveProperty(
-    "disabled",
-    false,
-  );
+  expect(
+    view.getByRole("button", { name: "Start SynaptoDesk" }),
+  ).toHaveProperty("disabled", false);
 });
 
 function setupRootConfiguration(
@@ -1643,7 +1680,9 @@ test.each([true, false])(
   async (keyed) => {
     useSavedCompatibleEndpointSetup(undefined, undefined, keyed);
     const view = await renderApp();
-    await userEvent.click(view.getByRole("button", { name: "Set up SynaptoDesk" }));
+    await userEvent.click(
+      view.getByRole("button", { name: "Set up SynaptoDesk" }),
+    );
     await userEvent.click(view.getByRole("button", { name: "Continue" }));
     await completeInstallation(view);
     expect(view.getByLabelText("Base URL")).toHaveProperty(
@@ -1658,11 +1697,12 @@ test.each([true, false])(
       view.getByLabelText("API key, if the endpoint needs one"),
     ).toHaveProperty("value", "");
     await userEvent.click(view.getByRole("button", { name: "Continue" }));
-    expect(view.getByRole("button", { name: "Start SynaptoDesk" })).toHaveProperty(
-      "disabled",
-      false,
+    expect(
+      view.getByRole("button", { name: "Start SynaptoDesk" }),
+    ).toHaveProperty("disabled", false);
+    await userEvent.click(
+      view.getByRole("button", { name: "Start SynaptoDesk" }),
     );
-    await userEvent.click(view.getByRole("button", { name: "Start SynaptoDesk" }));
     expect(
       invokeCalls.filter((call) => call.command === "start_stack"),
     ).toHaveLength(1);
@@ -1694,7 +1734,9 @@ test.each([
   async (baseUrl, model) => {
     useSavedCompatibleEndpointSetup(baseUrl, model);
     const view = await renderApp();
-    await userEvent.click(view.getByRole("button", { name: "Set up SynaptoDesk" }));
+    await userEvent.click(
+      view.getByRole("button", { name: "Set up SynaptoDesk" }),
+    );
     await userEvent.click(view.getByRole("button", { name: "Continue" }));
     await completeInstallation(view);
     expect(view.getByRole("button", { name: "Continue" })).toHaveProperty(
@@ -1702,7 +1744,9 @@ test.each([
       true,
     );
     await userEvent.click(view.getByRole("button", { name: "Continue" }));
-    expect(view.queryByRole("button", { name: "Start SynaptoDesk" })).toBeNull();
+    expect(
+      view.queryByRole("button", { name: "Start SynaptoDesk" }),
+    ).toBeNull();
     expect(invokeCalls.some((call) => call.command === "start_stack")).toBe(
       false,
     );
@@ -1717,7 +1761,9 @@ test("an unsupported saved model kind does not become a startable endpoint", asy
     "unsupported-model",
   );
   const view = await renderApp();
-  await userEvent.click(view.getByRole("button", { name: "Set up SynaptoDesk" }));
+  await userEvent.click(
+    view.getByRole("button", { name: "Set up SynaptoDesk" }),
+  );
   await userEvent.click(view.getByRole("button", { name: "Continue" }));
   await completeInstallation(view);
   expect(view.getByRole("button", { name: "Continue" })).toHaveProperty(
@@ -1803,13 +1849,14 @@ test("Change the model after an Ask failure stops the stack and reaches the prov
   await userEvent.click(await view.findByRole("radio", { name: /OpenAI/ }));
   await userEvent.click(view.getByRole("button", { name: "Continue" }));
   await waitFor(() =>
-    expect(view.getByRole("button", { name: "Start SynaptoDesk" })).toHaveProperty(
-      "disabled",
-      false,
-    ),
+    expect(
+      view.getByRole("button", { name: "Start SynaptoDesk" }),
+    ).toHaveProperty("disabled", false),
   );
 
-  await userEvent.click(view.getByRole("button", { name: "Start SynaptoDesk" }));
+  await userEvent.click(
+    view.getByRole("button", { name: "Start SynaptoDesk" }),
+  );
   await userEvent.click(await view.findByRole("button", { name: "Ask" }));
   await userEvent.click(
     await view.findByRole("button", { name: "Change the model" }),
@@ -1909,10 +1956,9 @@ test("empty Intelligence projects keep sign-in retryable while Start waits for a
       exact: false,
     }),
   ).toBeTruthy();
-  expect(view.getByRole("button", { name: "Start SynaptoDesk" })).toHaveProperty(
-    "disabled",
-    true,
-  );
+  expect(
+    view.getByRole("button", { name: "Start SynaptoDesk" }),
+  ).toHaveProperty("disabled", true);
 
   await userEvent.click(view.getByRole("button", { name: "Sign in again" }));
 
@@ -1923,10 +1969,9 @@ test("empty Intelligence projects keep sign-in retryable while Start waits for a
   );
   await userEvent.type(view.getByLabelText("Project key"), "ck-test");
   await waitFor(() =>
-    expect(view.getByRole("button", { name: "Start SynaptoDesk" })).toHaveProperty(
-      "disabled",
-      false,
-    ),
+    expect(
+      view.getByRole("button", { name: "Start SynaptoDesk" }),
+    ).toHaveProperty("disabled", false),
   );
 });
 
@@ -1991,10 +2036,9 @@ test("creating a named project connects it only after the user submits", async (
     command: "intelligence_key_for",
     args: { project: "new-project" },
   });
-  expect(view.getByRole("button", { name: "Start SynaptoDesk" })).toHaveProperty(
-    "disabled",
-    false,
-  );
+  expect(
+    view.getByRole("button", { name: "Start SynaptoDesk" }),
+  ).toHaveProperty("disabled", false);
 });
 
 test("project creation failure preserves the name and retries without losing a created project", async () => {
@@ -2099,7 +2143,9 @@ for (const staleProbe of [false, true]) {
         ).toBe(true),
       );
     }
-    expect(view.getByRole("button", { name: "Set up SynaptoDesk" })).toBeTruthy();
+    expect(
+      view.getByRole("button", { name: "Set up SynaptoDesk" }),
+    ).toBeTruthy();
     expect(view.getByRole("alert").textContent).toContain(failure.said);
     expect(view.queryByRole("button", { name: "Stop SynaptoDesk" })).toBeNull();
   });
@@ -2171,10 +2217,9 @@ test("saved startup credentials enable Start without raw protected secrets on mo
   await userEvent.click(view.getByRole("button", { name: "Continue" }));
 
   await waitFor(() =>
-    expect(view.getByRole("button", { name: "Start SynaptoDesk" })).toHaveProperty(
-      "disabled",
-      false,
-    ),
+    expect(
+      view.getByRole("button", { name: "Start SynaptoDesk" }),
+    ).toHaveProperty("disabled", false),
   );
   expect(
     invokeCalls.filter((call) => call.command === "already_configured"),
@@ -2222,10 +2267,9 @@ test("root edits reload saved configuration for that root and ignore stale saved
   expect(view.getByText(/A saved OpenAI API key will be used/)).toBeTruthy();
   await userEvent.click(view.getByRole("button", { name: "Continue" }));
   await waitFor(() =>
-    expect(view.getByRole("button", { name: "Start SynaptoDesk" })).toHaveProperty(
-      "disabled",
-      false,
-    ),
+    expect(
+      view.getByRole("button", { name: "Start SynaptoDesk" }),
+    ).toHaveProperty("disabled", false),
   );
 
   await userEvent.click(
@@ -2273,12 +2317,13 @@ test("root edits reload saved configuration for that root and ignore stale saved
   });
   await chooseModelAfterRootEdit(view);
   await waitFor(() =>
-    expect(view.getByRole("button", { name: "Start SynaptoDesk" })).toHaveProperty(
-      "disabled",
-      false,
-    ),
+    expect(
+      view.getByRole("button", { name: "Start SynaptoDesk" }),
+    ).toHaveProperty("disabled", false),
   );
-  await userEvent.click(view.getByRole("button", { name: "Start SynaptoDesk" }));
+  await userEvent.click(
+    view.getByRole("button", { name: "Start SynaptoDesk" }),
+  );
 
   expect(getStartStackPayload()).toMatchObject({
     root: rootC,
@@ -2385,7 +2430,9 @@ test.each([
       );
     }
     await user.click(view.getByRole("button", { name: "Continue" }));
-    const previousStart = view.getByRole("button", { name: "Start SynaptoDesk" });
+    const previousStart = view.getByRole("button", {
+      name: "Start SynaptoDesk",
+    });
     expect(previousStart).toHaveProperty("disabled", !savedModel);
     await user.click(view.getByRole("button", { name: "Change installation" }));
     const rootField = view.getByLabelText("Where SynaptoDesk lives");
@@ -2416,7 +2463,9 @@ test.each([
       expect(
         view.queryByRole("button", { name: "Continue to sign in" }),
       ).toBeNull();
-      expect(view.queryByRole("button", { name: "Start SynaptoDesk" })).toBeNull();
+      expect(
+        view.queryByRole("button", { name: "Start SynaptoDesk" }),
+      ).toBeNull();
       expect(requests).toHaveLength(requestCountBeforeBlur);
       expect(invokeCalls.some((call) => call.command === "start_stack")).toBe(
         false,
@@ -2456,7 +2505,9 @@ test.each([
       );
       await user.click(view.getByRole("button", { name: "Back" }));
       await user.click(view.getByLabelText("Where SynaptoDesk lives"));
-      await act(async () => view.getByLabelText("Where SynaptoDesk lives").blur());
+      await act(async () =>
+        view.getByLabelText("Where SynaptoDesk lives").blur(),
+      );
     } else {
       await act(async () => rootField.blur());
     }
@@ -2494,7 +2545,9 @@ test.each([
       "value",
       "wss://current.example/ws",
     );
-    const currentStart = view.getByRole("button", { name: "Start SynaptoDesk" });
+    const currentStart = view.getByRole("button", {
+      name: "Start SynaptoDesk",
+    });
     expect(currentStart).toHaveProperty("disabled", false);
     await user.click(currentStart);
     expect(
@@ -2764,7 +2817,9 @@ test("saved compatible endpoint restores the optional container URL", async () =
   );
 
   const view = await renderApp();
-  await userEvent.click(view.getByRole("button", { name: "Set up SynaptoDesk" }));
+  await userEvent.click(
+    view.getByRole("button", { name: "Set up SynaptoDesk" }),
+  );
   await userEvent.click(view.getByRole("button", { name: "Continue" }));
   await completeInstallation(view);
 
@@ -2981,7 +3036,9 @@ for (const provider of [
         view.getByRole("button", { name: "Start SynaptoDesk" }),
       ).toHaveProperty("disabled", false),
     );
-    await userEvent.click(view.getByRole("button", { name: "Start SynaptoDesk" }));
+    await userEvent.click(
+      view.getByRole("button", { name: "Start SynaptoDesk" }),
+    );
 
     expect(
       invokeCalls.filter((call) => call.command === "already_configured"),
@@ -3124,7 +3181,9 @@ test("Start credential failures do not expose a restore action", async () => {
     "synthetic-model-key",
   );
   await userEvent.click(view.getByRole("button", { name: "Continue" }));
-  await userEvent.click(view.getByRole("button", { name: "Start SynaptoDesk" }));
+  await userEvent.click(
+    view.getByRole("button", { name: "Start SynaptoDesk" }),
+  );
 
   expect(
     await view.findByText("Saved credential needs authorization."),
@@ -3151,7 +3210,9 @@ test("the Enter that finishes a composed character does not ask the Bot", async 
   };
   const view = await enterCompatibleEndpoint("https://models.example/v1");
   await userEvent.click(view.getByRole("button", { name: "Continue" }));
-  await userEvent.click(view.getByRole("button", { name: "Start SynaptoDesk" }));
+  await userEvent.click(
+    view.getByRole("button", { name: "Start SynaptoDesk" }),
+  );
   const question = await view.findByLabelText("Your question");
   // Keys land on the focused field.
   await userEvent.click(question);
@@ -3216,10 +3277,9 @@ test("self-hosted Intelligence sign-in selects a project and receives its provis
     "value",
     "self-hosted-project-key",
   );
-  expect(view.getByRole("button", { name: "Start SynaptoDesk" })).toHaveProperty(
-    "disabled",
-    false,
-  );
+  expect(
+    view.getByRole("button", { name: "Start SynaptoDesk" }),
+  ).toHaveProperty("disabled", false);
 });
 
 test("cancelling self-hosted login ignores a late project response and keeps manual setup available", async () => {
@@ -3253,10 +3313,9 @@ test("cancelling self-hosted login ignores a late project response and keeps man
   expect(view.queryByRole("button", { name: "Cancelled team" })).toBeNull();
   expect(view.getByLabelText("API URL")).toHaveProperty("disabled", false);
   await userEvent.type(view.getByLabelText("Project key"), "manual-key");
-  expect(view.getByRole("button", { name: "Start SynaptoDesk" })).toHaveProperty(
-    "disabled",
-    false,
-  );
+  expect(
+    view.getByRole("button", { name: "Start SynaptoDesk" }),
+  ).toHaveProperty("disabled", false);
 });
 
 test("self-hosted provisioning failure offers a fresh sign-in without retaining a stale picker", async () => {

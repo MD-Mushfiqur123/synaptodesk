@@ -1,8 +1,8 @@
 import { useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "@tanstack/react-router";
 import { useEffect } from "react";
-import { type ChannelPage, type ChannelSummary, channelKeys } from "./queries";
 import { socketUrl as buildSocketUrl } from "@/lib/socket-url";
+import { type ChannelPage, type ChannelSummary, channelKeys } from "./queries";
 
 /**
  * Keep the roster live.

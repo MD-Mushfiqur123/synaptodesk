@@ -10,15 +10,15 @@ import type { Database } from "../src/db/client";
 
 describe("roleForEmail", () => {
   test("assigns an admin role to allowlisted addresses without case sensitivity", () => {
-    expect(roleForEmail("Admin@SynaptoDesk.test", ["admin@synaptodesk.test"])).toBe(
-      "admin",
-    );
+    expect(
+      roleForEmail("Admin@SynaptoDesk.test", ["admin@synaptodesk.test"]),
+    ).toBe("admin");
   });
 
   test("assigns the user role to addresses outside the initial admin allowlist", () => {
-    expect(roleForEmail("member@synaptodesk.test", ["admin@synaptodesk.test"])).toBe(
-      "user",
-    );
+    expect(
+      roleForEmail("member@synaptodesk.test", ["admin@synaptodesk.test"]),
+    ).toBe("user");
   });
 });
 
@@ -276,7 +276,9 @@ describe("seedRole", () => {
 describe("isConfiguredAdmin", () => {
   test("ignores case and surrounding space, on both sides", () => {
     expect(
-      isConfiguredAdmin("  Admin@SynaptoDesk.test ", [" admin@synaptodesk.TEST "]),
+      isConfiguredAdmin("  Admin@SynaptoDesk.test ", [
+        " admin@synaptodesk.TEST ",
+      ]),
     ).toBe(true);
   });
 });

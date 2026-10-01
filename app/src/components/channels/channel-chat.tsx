@@ -8,16 +8,16 @@ import {
 } from "@copilotkit/react-core/v2";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { HandoffResumeNotice } from "@/components/computer/handoff-resume-notice";
 import { attachmentModality } from "@/components/channels/chat-messages";
 import { toAgentOptions } from "@/components/channels/composer";
 import { ConversationView } from "@/components/channels/conversation-view";
-import { VoiceCallWidget } from "@/components/channels/voice-call-widget";
 import {
   seedMessage,
   takeFirstMessage,
   transcriptMessages,
 } from "@/components/channels/transcript-messages";
+import { VoiceCallWidget } from "@/components/channels/voice-call-widget";
+import { HandoffResumeNotice } from "@/components/computer/handoff-resume-notice";
 import { agentListQueryOptions } from "@/lib/agents/queries";
 import { attachmentUrl } from "@/lib/channels/attachments";
 import {
@@ -42,14 +42,14 @@ import {
   voiceContext,
   withVoiceContext,
 } from "@/lib/voice/agent-bridge";
-import { useVoiceCall } from "@/lib/voice/use-voice-call";
 import {
-  loadVoiceArchive,
   cachedVoiceArchive,
+  loadVoiceArchive,
   useVoiceArchive,
   voiceArchiveContext,
   withVoiceChats,
 } from "@/lib/voice/archive";
+import { useVoiceCall } from "@/lib/voice/use-voice-call";
 import { queryClient } from "@/query-client";
 import { newId } from "../../lib/new-id";
 

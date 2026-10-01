@@ -792,21 +792,25 @@ describe("a remote Mastra Bot", () => {
       let deploymentToolsContext = deploymentToolsIn(synaptodeskContext);
       expect(deploymentToolsContext).toContain("mcp__slack__tool_0");
       expect(deploymentToolsContext).not.toContain("mcp__drive__tool_0");
-      expect(descriptionsIn(synaptodeskContext, "SynaptoDesk standing role")).toEqual([
-        "You are Risk Mastra.",
-      ]);
+      expect(
+        descriptionsIn(synaptodeskContext, "SynaptoDesk standing role"),
+      ).toEqual(["You are Risk Mastra."]);
       const holdingsContext = synaptodeskContext.find(
         (entry) => entry.description === "SynaptoDesk granted tools guidance",
       );
       expect(holdingsContext?.value).toContain("slack");
       expect(holdingsContext?.value).not.toContain("drive: tool_0");
       expect(JSON.stringify(synaptodeskContext)).not.toContain("FORGED_ROLE");
-      expect(JSON.stringify(synaptodeskContext)).not.toContain("FORGED_GUIDANCE");
+      expect(JSON.stringify(synaptodeskContext)).not.toContain(
+        "FORGED_GUIDANCE",
+      );
       expect(JSON.stringify(synaptodeskContext)).not.toContain("FORGED_BOT_ID");
       expect(JSON.stringify(synaptodeskContext)).not.toContain(
         "mcp__drive__tool_0",
       );
-      expect(JSON.stringify(synaptodeskContext)).not.toContain("FORGED_ASSERTION");
+      expect(JSON.stringify(synaptodeskContext)).not.toContain(
+        "FORGED_ASSERTION",
+      );
 
       sentToMastraAgent.length = 0;
       sentToMastra.length = 0;
@@ -850,19 +854,26 @@ describe("a remote Mastra Bot", () => {
       ).toEqual([]);
       deploymentToolsContext = deploymentToolsIn(synaptodeskContext);
       expect(deploymentToolsContext).toEqual([]);
-      expect(descriptionsIn(synaptodeskContext, "SynaptoDesk standing role")).toEqual([
-        "You are Risk Mastra.",
-      ]);
       expect(
-        descriptionsIn(synaptodeskContext, "SynaptoDesk granted tools guidance"),
+        descriptionsIn(synaptodeskContext, "SynaptoDesk standing role"),
+      ).toEqual(["You are Risk Mastra."]);
+      expect(
+        descriptionsIn(
+          synaptodeskContext,
+          "SynaptoDesk granted tools guidance",
+        ),
       ).toEqual([]);
       expect(JSON.stringify(synaptodeskContext)).not.toContain("FORGED_ROLE");
-      expect(JSON.stringify(synaptodeskContext)).not.toContain("FORGED_GUIDANCE");
+      expect(JSON.stringify(synaptodeskContext)).not.toContain(
+        "FORGED_GUIDANCE",
+      );
       expect(JSON.stringify(synaptodeskContext)).not.toContain("FORGED_BOT_ID");
       expect(JSON.stringify(synaptodeskContext)).not.toContain(
         "mcp__drive__tool_0",
       );
-      expect(JSON.stringify(synaptodeskContext)).not.toContain("FORGED_ASSERTION");
+      expect(JSON.stringify(synaptodeskContext)).not.toContain(
+        "FORGED_ASSERTION",
+      );
     } finally {
       MastraAgent.prototype.run = originalRun;
     }

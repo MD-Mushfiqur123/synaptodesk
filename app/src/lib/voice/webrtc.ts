@@ -113,7 +113,10 @@ export const connectWebRtc: ConnectVoice = async ({
     const response = await fetch("/api/voice/calls", {
       method: "POST",
       credentials: "include",
-      headers: { "Content-Type": "application/json", "x-synaptodesk-voice": "1" },
+      headers: {
+        "Content-Type": "application/json",
+        "x-synaptodesk-voice": "1",
+      },
       body: JSON.stringify({ channelId, sdp: offer.sdp }),
       signal,
     });

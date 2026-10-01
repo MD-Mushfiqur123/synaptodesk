@@ -51,8 +51,8 @@ export function OrganizationSignIn({
     <div className="sheet">
       <h1>Sign in to your organization</h1>
       <p>
-        Your installation is ready. Sign in through your organization's SynaptoDesk
-        to continue.
+        Your installation is ready. Sign in through your organization's
+        SynaptoDesk to continue.
       </p>
       <p>{authorityUrl}</p>
       {(

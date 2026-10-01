@@ -18,7 +18,10 @@ import {
   channelKeys,
 } from "@/lib/channels/queries";
 import { applyChannelEvent } from "@/lib/channels/use-channel-events";
-import { a2uiProviderOptions, SYNAPTODESK_A2UI_CATALOG } from "@/lib/copilot/a2ui";
+import {
+  a2uiProviderOptions,
+  SYNAPTODESK_A2UI_CATALOG,
+} from "@/lib/copilot/a2ui";
 import { queryClient } from "@/query-client";
 
 type ChannelCache = InfiniteData<ChannelPage>;

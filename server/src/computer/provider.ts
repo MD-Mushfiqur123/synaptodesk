@@ -130,7 +130,9 @@ export function createSharedComputerProvider(
   function headers(botId?: string): Record<string, string> {
     return {
       ...(botId ? { "x-synaptodesk-bot-id": botId } : {}),
-      ...(options.token ? { "x-synaptodesk-computer-token": options.token } : {}),
+      ...(options.token
+        ? { "x-synaptodesk-computer-token": options.token }
+        : {}),
     };
   }
 
