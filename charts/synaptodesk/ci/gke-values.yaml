@@ -1,0 +1,55 @@
+# GKE. Cloud SQL, Workload Identity, Secret Manager through external-secrets, Gateway API.
+config:
+  initialAdminEmails: admin@example.com
+  intelligence:
+    apiUrl: https://api.intelligence.copilotkit.ai
+    gatewayWsUrl: wss://realtime.intelligence.copilotkit.ai
+  auth:
+    google:
+      clientId: example.apps.googleusercontent.com
+  publicUrl: https://synaptodesk.example.com
+postgresql:
+  enabled: false
+database:
+  existingSecret: synaptodesk-database
+serviceAccount:
+  annotations:
+    iam.gke.io/gcp-service-account: synaptodesk@example-project.iam.gserviceaccount.com
+externalSecrets:
+  enabled: true
+  secretStoreRef:
+    name: gcp-secret-manager
+  data:
+    - secretKey: key-encryption-key
+      remoteRef:
+        key: synaptodesk-key-encryption-key
+    # Sessions are signed with this. The server refuses to start when sign-in is configured and it
+    # is missing, so every provider store has to carry it.
+    - secretKey: better-auth-secret
+      remoteRef:
+        key: synaptodesk-better-auth-secret
+    - secretKey: intelligence-api-key
+      remoteRef:
+        key: synaptodesk-intelligence-api-key
+    - secretKey: google-client-secret
+      remoteRef:
+        key: synaptodesk/google-client-secret
+    - secretKey: computer-token
+      remoteRef:
+        key: synaptodesk/computer-token
+    - secretKey: license-token
+      remoteRef:
+        key: synaptodesk-license-token
+# Gateway API rather than an Ingress, which the same chart supports without a second code path.
+ingress:
+  enabled: false
+httpRoute:
+  enabled: true
+  parentRefs:
+    - name: synaptodesk-gateway
+      namespace: gateway-system
+  hostnames:
+    - synaptodesk.example.com
+
+computers:
+  mode: shared

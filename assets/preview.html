@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SynaptoDesk Pixel Logo Showcase</title>
+  <style>
+    body {
+      background-color: #09090b;
+      color: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      gap: 32px;
+    }
+    .container {
+      display: flex;
+      gap: 48px;
+      align-items: center;
+    }
+    .card {
+      background: #18181b;
+      border: 1px solid #27272a;
+      border-radius: 16px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    .pixel-render {
+      image-rendering: pixelated;
+      width: 180px;
+      height: 180px;
+    }
+    .invert-card {
+      background: #ffffff;
+      color: #000000;
+      border: 1px solid #e4e4e7;
+    }
+    h2 { margin: 0; font-size: 18px; letter-spacing: -0.5px; }
+    p { margin: 0; font-size: 13px; color: #a1a1aa; }
+  </style>
+</head>
+<body>
+  <div style="text-align: center;">
+    <h1 style="font-size: 28px; letter-spacing: -1px; margin-bottom: 8px;">SynaptoDesk · 2D Minimal Pixel Logo</h1>
+    <p>Pure Black & White · Crisp Edge Pixel Art · 100% Copyright-Free</p>
+  </div>
+
+  <div class="container">
+    <!-- Dark Mode / Black Background -->
+    <div class="card">
+      <svg class="pixel-render" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" shape-rendering="crispEdges">
+        <rect width="32" height="32" fill="#000000" />
+        <rect x="10" y="4" width="12" height="2" fill="#ffffff" />
+        <rect x="10" y="26" width="12" height="2" fill="#ffffff" />
+        <rect x="6" y="6" width="4" height="2" fill="#ffffff" />
+        <rect x="22" y="6" width="4" height="2" fill="#ffffff" />
+        <rect x="6" y="24" width="4" height="2" fill="#ffffff" />
+        <rect x="22" y="24" width="4" height="2" fill="#ffffff" />
+        <rect x="4" y="8" width="2" height="16" fill="#ffffff" />
+        <rect x="26" y="8" width="2" height="16" fill="#ffffff" />
+        <!-- Eyes -->
+        <rect x="9" y="11" width="3" height="7" fill="#ffffff" />
+        <rect x="20" y="11" width="3" height="7" fill="#ffffff" />
+        <rect x="21" y="13" width="1" height="2" fill="#000000" />
+        <!-- Synapse Pixel -->
+        <rect x="15" y="14" width="2" height="2" fill="#ffffff" />
+        <!-- Mouth -->
+        <rect x="10" y="21" width="12" height="2" fill="#ffffff" />
+      </svg>
+      <h2>Dark Mode Icon</h2>
+      <p>Solid Black with Sharp White Pixels</p>
+    </div>
+
+    <!-- Light Mode / Inverted -->
+    <div class="card invert-card">
+      <svg class="pixel-render" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" shape-rendering="crispEdges">
+        <rect width="32" height="32" fill="#ffffff" />
+        <rect x="10" y="4" width="12" height="2" fill="#000000" />
+        <rect x="10" y="26" width="12" height="2" fill="#000000" />
+        <rect x="6" y="6" width="4" height="2" fill="#000000" />
+        <rect x="22" y="6" width="4" height="2" fill="#000000" />
+        <rect x="6" y="24" width="4" height="2" fill="#000000" />
+        <rect x="22" y="24" width="4" height="2" fill="#000000" />
+        <rect x="4" y="8" width="2" height="16" fill="#000000" />
+        <rect x="26" y="8" width="2" height="16" fill="#000000" />
+        <!-- Eyes -->
+        <rect x="9" y="11" width="3" height="7" fill="#000000" />
+        <rect x="20" y="11" width="3" height="7" fill="#000000" />
+        <rect x="21" y="13" width="1" height="2" fill="#ffffff" />
+        <!-- Synapse Pixel -->
+        <rect x="15" y="14" width="2" height="2" fill="#000000" />
+        <!-- Mouth -->
+        <rect x="10" y="21" width="12" height="2" fill="#000000" />
+      </svg>
+      <h2>Light Mode Icon</h2>
+      <p style="color: #71717a;">Solid White with Sharp Black Pixels</p>
+    </div>
+  </div>
+</body>
+</html>
